@@ -6,36 +6,38 @@ export type User = {
   id: number;
   name: string;
   email: string;
-  city: string;
+  address: {
+    city: string;
+  };
 };
 
 export type UserCardProps = {
   user: User;
-}
+};
 
 function App() {
-  const [users, setUsers] = useState<User[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('Mounting User Modules...')
+    console.log('Mounting User Modules...');
 
-  async function getUsers() {
-    try {
-      setLoading(true)
-      const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
-      const data = await res.json();
-      setUsers(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
-    } finally {
-      setLoading(false)
+    async function getUsers() {
+      try {
+        setLoading(true);
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+        const data = await res.json();
+        setUsers(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
     }
-  }
 
-  getUsers()
-}, [])
+    getUsers();
+  }, []);
 
   return (
     <>
