@@ -1,8 +1,20 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { UserList } from './components/UserList';
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  city: string;
+};
+
+export type UserCardProps = {
+  user: User;
+}
 
 function App() {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -32,7 +44,10 @@ function App() {
           <h2>React - Övning 4</h2>
           <p>Återanvändbara komponenter</p>
         </div>
-        <div>
+        <div className="assignment">
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error}</p>}
+          {!loading && !error && <UserList users={users} />}
         </div>
         <div>
           <small>Alexander Tjernström, IT-Högskolan JSU25</small>
