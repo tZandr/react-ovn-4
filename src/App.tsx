@@ -13,6 +13,7 @@ export type User = {
 
 export type UserCardProps = {
   user: User;
+  color?: string;
 };
 
 function App() {

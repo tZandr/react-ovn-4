@@ -5,7 +5,11 @@ export function UserList({ users }: { users: User[] }) {
   return (
     <div>
       {users.map((u) => (
-        <UserCard user={u} key={u.id} />
+        <UserCard
+          user={u}
+          color={u.address.city === 'Wisokyburgh' ? 'darkgreen' : 'transparent'}
+          key={u.id}
+        />
       ))}
     </div>
   );

@@ -1,8 +1,8 @@
 import type { UserCardProps } from '../App';
 
-export const UserCard = ({ user }: UserCardProps) => {
+export const UserCard = ({ user, color }: UserCardProps) => {
   return (
-    <div className="userCard">
+    <div className="userCard" style={{ backgroundColor: color }}>
       <div>
         <h2>{user.name}</h2>
         <p>{user.email}</p>
